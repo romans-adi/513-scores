@@ -55,7 +55,6 @@ export const handleLeagueClick = async (leagueId, dispatch, setEventList, setSel
   try {
     const action = await dispatch(fetchEventsByLeagueData(leagueId));
     const events = action.payload;
-    console.log(events);
     setEventList(events);
     setSelectedLeague(events[0]?.league);
   } catch (error) {

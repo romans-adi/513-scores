@@ -26,11 +26,7 @@ export const fetchEventsBySectionData = createAsyncThunk(
   'categories/fetchEventsBySectionData',
   async (sectionId) => {
     const events = await fetchEventsBySection(sectionId);
-
-    // Extract the league details from the first event
     const league = events[0]?.league;
-
-    // Attach the league details to each event
     const eventsWithLeague = events.map((event) => ({
       ...event,
       league,

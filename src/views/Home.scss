@@ -42,3 +42,27 @@
 .react-ripples {
   width: 100% !important;
 }
+
+.event-heading {
+  font-size: 3rem;
+  padding: 3rem 0 0.3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 1px;
+    background-color: white;
+}
+}
+
+.selected-league-container {
+  width: 100%;
+}

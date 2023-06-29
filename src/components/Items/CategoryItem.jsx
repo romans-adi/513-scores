@@ -13,7 +13,7 @@ const categoryEmojis = {
   handball: '🤾',
 };
 
-const LeagueItem = ({ category, handleCategoryClick }) => (
+const CategoryItem = ({ category, handleCategoryClick }) => (
   <div key={category.id} style={{ backgroundColor: getLeagueItemBackgroundColor(category.id) }}>
     <Ripples>
       <button
@@ -32,7 +32,7 @@ const LeagueItem = ({ category, handleCategoryClick }) => (
   </div>
 );
 
-LeagueItem.propTypes = {
+CategoryItem.propTypes = {
   category: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -40,4 +40,4 @@ LeagueItem.propTypes = {
   handleCategoryClick: PropTypes.func.isRequired,
 };
 
-export default LeagueItem;
+export default CategoryItem;

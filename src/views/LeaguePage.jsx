@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import LeagueIcon from '../components/Items/LeagueIcon';
@@ -19,32 +19,37 @@ const LeaguePage = () => {
 
     try {
       const events = await dispatch(fetchEventsByLeagueData(leagueId));
-      console.log(events);
       dispatch(setEventList(events));
-      setSelectedLeague(events[0]?.league);
-
       navigate('/events');
     } catch (error) {
       console.error('Error fetching events:', error);
     }
   };
 
-  console.log('Selected League:', selectedLeague);
+  useEffect(() => {
+    if (selectedLeague) {
+      dispatch(setSelectedLeague(selectedLeague));
+    }
+  }, [selectedLeague, dispatch]);
+
+  // Check if the page is being rendered for the first time or if it's a navigation back
+  const isFirstRender = useSelector((state) => state.categories.isFirstRender);
+  const renderLogoOnly = !isFirstRender;
 
   return (
-    <div>
+    <>
       <div className="selected-league-container">
         {selectedLeague && (
           <LeagueIcon
             key={selectedLeague.id}
             id={selectedLeague.id}
-            logo={selectedLeague.logo}
+            logo={renderLogoOnly ? selectedLeague.logo : null}
             name={selectedLeague.name}
             handleClick={() => handleClick(selectedLeague.id)}
           />
         )}
       </div>
-    </div>
+    </>
   );
 };
 

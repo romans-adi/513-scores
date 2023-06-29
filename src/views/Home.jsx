@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import LoadingIndicator from '../components/Indicators/LoadingIndicator';
 import ErrorIndicator from '../components/Indicators/ErrorIndicator';
 import { fetchCategoriesData, setTournamentList } from '../redux/categories/categoriesSlice';
-import LeagueItem from '../components/Items/LeagueItem';
+import CategoryItem from '../components/Items/CategoryItem';
 import getLeagueItemBackgroundColor from '../colorUtils';
 import { handleCategoryClick } from '../handleActions';
 
@@ -37,7 +37,7 @@ const Home = () => {
   return (
     <div className="leagues-container">
       {sortedCategories.map((category, index) => (
-        <LeagueItem
+        <CategoryItem
           key={category.id}
           category={category}
           handleCategoryClick={() => handleCategoryClick(category.id, dispatch, navigate, setTournamentList)}

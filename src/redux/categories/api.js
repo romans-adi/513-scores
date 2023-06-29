@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'efcf867780mshf46d4ddcf8ab52fp11b435jsn06efdd2dc21e';
+const API_KEY = 'ad83f4013emshe90db1c06834cd6p126db6jsn8e559041807b';
 const API_HOST = 'sportscore1.p.rapidapi.com';
 
 export const fetchCategories = async () => {
@@ -75,24 +75,5 @@ export const fetchEventsByLeague = async (leagueId) => {
     return response.data.data;
   } catch (error) {
     throw new Error('Failed to fetch events');
-  }
-};
-
-export const fetchSectionEvents = async (sportId) => {
-  try {
-    const options = {
-      method: 'GET',
-      url: `https://${API_HOST}/sections/${sportId}/events`,
-      params: { page: '1' },
-      headers: {
-        'X-RapidAPI-Key': API_KEY,
-        'X-RapidAPI-Host': API_HOST,
-      },
-    };
-    const response = await axios.request(options);
-    return response.data.data;
-  } catch (error) {
-    console.error('Error fetching events:', error);
-    throw error;
   }
 };

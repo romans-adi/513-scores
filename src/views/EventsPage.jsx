@@ -6,11 +6,9 @@ import './Home.scss';
 const EventsPage = () => {
   const eventList = useSelector((state) => state.categories.events.payload || []);
 
-  console.log(eventList);
-
   return (
     <div className="events-container">
-      <h3>Events:</h3>
+      <h3 className="event-heading">All Games</h3>
       <ul>
         {eventList.map((event, index) => (
           <EventItem name={event.name} id={event.id} key={event.id} event={event} index={index} />

@@ -6,7 +6,10 @@ nav {
   font-size: 1.3rem;
   background-color: vars.$navigation-color;
   justify-content: space-around;
-
+  box-shadow: 0 0 20px 0 black;
+  z-index: 2;
+  align-items: baseline;
+  
   .current {
     min-width: 110px;
   }
