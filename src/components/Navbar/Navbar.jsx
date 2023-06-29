@@ -5,15 +5,19 @@ import { BiMicrophone } from 'react-icons/bi';
 import { BsFillGearFill } from 'react-icons/bs';
 import { IoIosArrowBack } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import './Navbar.scss';
 
 const Navbar = () => {
-  const location = useLocation();
-  const currentPage = location.pathname;
+  const navigate = useNavigate();
+  const { currentPage } = useParams();
+
+  const goBack = () => {
+    navigate(-1, { replace: true });
+  };
 
   const renderTitle = () => {
-    if (currentPage === '/home' || currentPage === '/') {
+    if (!currentPage || currentPage === '/home' || currentPage === '/') {
       return <div className="current">All Events</div>;
     }
     const formattedTitle = currentPage.slice(1).charAt(0).toUpperCase() + currentPage.slice(2);
@@ -27,7 +31,7 @@ const Navbar = () => {
           <GiHamburgerMenu />
         </NavLink>
       ) : (
-        <NavLink to="/">
+        <NavLink to="#" onClick={goBack}>
           <IoIosArrowBack className="arrow" />
         </NavLink>
       )}

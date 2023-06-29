@@ -18,13 +18,14 @@ const LeagueIcon = ({
 );
 
 LeagueIcon.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   name: PropTypes.string.isRequired,
   logo: PropTypes.string,
   handleClick: PropTypes.func.isRequired,
 };
 
 LeagueIcon.defaultProps = {
+  id: null,
   logo: null,
 };
 

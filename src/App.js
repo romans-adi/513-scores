@@ -6,6 +6,9 @@ import Navbar from './components/Navbar/Navbar';
 import store from './redux/store';
 import Details from './views/Details';
 import './App.scss';
+import TournamentPage from './views/TournamentPage';
+import LeaguePage from './views/LeaguePage';
+import EventsPage from './views/EventsPage';
 
 const App = () => (
   <Provider store={store}>
@@ -15,7 +18,10 @@ const App = () => (
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route exact path="/details" component={<Details />} />
+            <Route path="/tournament" element={<TournamentPage />} />
+            <Route path="/league/:id" element={<LeaguePage />} />
+            <Route path="/events/" element={<EventsPage />} />
+            <Route path="/details" element={<Details />} />
           </Routes>
         </div>
       </BrowserRouter>

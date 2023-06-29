@@ -8,47 +8,37 @@
   justify-content: center;
   align-items: flex-start;
 
+  > *:not(style) {
+    flex: 1 1 50%;
+    aspect-ratio: 1.5;
+  }
+
   button {
     all: unset;
   }
 
   .league-item,
-  .league-icon {
+  .league-icon,
+  .tournament-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 200px;
-    height: 200px;
-    border: 1px solid #ccc;
+    width: 100%;
     padding: 10px;
     font-size: 1rem;
     text-align: center;
     align-items: center;
     justify-content: center;
-
+    flex: 1;
+    aspect-ratio: 1/1;
 
     &:hover {
       background-color: vars.$dark-main-color;
       cursor: pointer;
     }
   }
+}
 
-  .tournament-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-    height: 200px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    font-size: 1rem;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      background-color: vars.$dark-main-color;
-      cursor: pointer;
-  }
-  }
+.react-ripples {
+  width: 100% !important;
 }
