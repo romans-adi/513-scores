@@ -32,7 +32,6 @@ const LeaguePage = () => {
     }
   }, [selectedLeague, dispatch]);
 
-  // Check if the page is being rendered for the first time or if it's a navigation back
   const isFirstRender = useSelector((state) => state.categories.isFirstRender);
   const renderLogoOnly = !isFirstRender;
 

@@ -37,7 +37,7 @@ export const handleTournamentClick = async (sportId, dispatch, navigate) => {
       const { league } = events[0];
       if (league && league.slug) {
         dispatch(setSelectedLeagueId(league));
-        navigate(`/league/${league.slug}`);
+        navigate(`/league/${league.name}`);
       } else {
         console.error('Error fetching events: Invalid league object or missing slug');
         const leagueId = league ? league.id : 'Unknown League';

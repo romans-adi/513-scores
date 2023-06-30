@@ -11,7 +11,15 @@ const EventsPage = () => {
       <h3 className="event-heading">All Games</h3>
       <ul>
         {eventList.map((event, index) => (
-          <EventItem name={event.name} id={event.id} key={event.id} event={event} index={index} />
+          <EventItem
+            name={event.name}
+            id={event.id}
+            startAt={event.start_at}
+            awayTeam={event.away_team}
+            homeTeam={event.home_team}
+            key={event.id}
+            index={index}
+          />
         ))}
       </ul>
     </div>

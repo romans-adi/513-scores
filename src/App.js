@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import Home from './views/Home';
 import Navbar from './components/Navbar/Navbar';
 import store from './redux/store';
-import Details from './views/Details';
 import './App.scss';
 import TournamentPage from './views/TournamentPage';
 import LeaguePage from './views/LeaguePage';
@@ -19,9 +18,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/tournament" element={<TournamentPage />} />
-            <Route path="/league/:id" element={<LeaguePage />} />
+            <Route path="/league/:leagueName" element={<LeaguePage />} />
             <Route path="/events/" element={<EventsPage />} />
-            <Route path="/details" element={<Details />} />
           </Routes>
         </div>
       </BrowserRouter>

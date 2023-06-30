@@ -1,5 +1,3 @@
-/* eslint-disable no-constant-condition */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { BiMicrophone } from 'react-icons/bi';
 import { BsFillGearFill } from 'react-icons/bs';
@@ -14,7 +12,7 @@ const Navbar = () => {
   const currentPage = location.pathname;
 
   const goBack = () => {
-    if (currentPage !== 'home' || currentPage !== '/') {
+    if (currentPage !== 'home' && currentPage !== '/') {
       navigate(-1, { replace: true });
     }
   };
@@ -23,7 +21,8 @@ const Navbar = () => {
     if (!currentPage || currentPage === '/') {
       return <div className="current">All Events</div>;
     }
-    const formattedTitle = currentPage.slice(1).charAt(0).toUpperCase() + currentPage.slice(2);
+    const decodedTitle = decodeURIComponent(location.pathname.slice(1));
+    const formattedTitle = decodedTitle.charAt(0).toUpperCase() + decodedTitle.slice(1);
     return <div className="current">{formattedTitle}</div>;
   };
 
