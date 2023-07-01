@@ -60,11 +60,11 @@ The live sports scores app provides real-time updates and schedules for various 
 
 <!-- LIVE DEMO -->
 
-<!-- ## ⚽ Live Demo <a name="live-demo"></a>
+## ⚽ Live Demo <a name="live-demo"></a>
 
-- [Here is a Live Demo of this project]()
+- [Here is a Live Demo of this project](https://five13-scores.onrender.com/)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 

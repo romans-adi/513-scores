@@ -1,3 +1,4 @@
+/* stylelint-disable at-rule-no-unknown */
 @use './assets/variables' as vars;
 
 * {
@@ -42,5 +43,5 @@ a {
 }
 
 .error-text {
-padding: 5rem;
+  padding: 5rem;
 }
