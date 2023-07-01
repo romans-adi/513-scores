@@ -49,7 +49,7 @@ const Home = () => {
   }
 
   const sortedCategories = categories.slice().sort((a, b) => a.name.localeCompare(b.name));
-
+  console.log(totalEventsBySport);
   return (
     <div className="categories-container">
       {sortedCategories.map((category, index) => {
