@@ -1,0 +1,45 @@
+/* stylelint-disable at-rule-no-unknown */
+@use '../../../assets/variables' as vars;
+
+.league-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+
+  &:hover {
+    background-color: vars.$dark-main-color;
+    cursor: pointer;
+  }
+
+  > *:not(style) {
+    flex: 1 1 50%;
+  }
+
+  button {
+    all: unset;
+  }
+
+  .league-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    font-size: 1rem;
+    text-align: center;
+    justify-content: center;
+    flex: 1;
+    aspect-ratio: 1/1;
+
+    .league-logo {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .league-logo {
+    width: 30% !important;
+  }
+}
