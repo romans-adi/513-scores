@@ -1,14 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import EventItem from '../components/Items/EventItem';
-import './Home.scss';
+import EventItem from '../components/Items/Event/EventItem';
 
 const EventsPage = () => {
-  const eventList = useSelector((state) => state.categories.events.payload || []);
-
+  const eventList = useSelector((state) => state.categories.events || []);
   return (
     <div className="events-container">
-      <h3 className="event-heading">All Games</h3>
+      <h3 className="event-heading">
+        All Games (
+        {' '}
+        {eventList.length}
+        )
+      </h3>
       <ul>
         {eventList.map((event, index) => (
           <EventItem

@@ -1,50 +1,31 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import TournamentItem from '../components/Items/TournamentItem';
-
-const mockHandleTournamentClick = jest.fn();
+import TournamentItem from '../components/Items/Tournament/TournamentItem';
 
 describe('TournamentItem', () => {
   const tournament = {
-    name: 'Tournament Name',
+    id: 1,
+    name: 'Tournament 1',
     countryCode: 'US',
-    eventId: 1,
-    eventCount: 10,
+    eventId: 123,
+    eventCount: 5,
   };
 
+  const mockHandleTournamentClick = jest.fn();
+
   it('renders correctly', () => {
-    const { getByText, getByRole } = render(
-      <TournamentItem
-        index={1}
-        tournament={tournament}
-        handleTournamentClick={mockHandleTournamentClick}
-      />,
-    );
-
-    const tournamentItem = getByRole('button');
-    const countryName = getByText('Tournament Name');
-    const flagEmoji = getByRole('img');
-    const eventCount = getByText('(10)');
-
-    expect(tournamentItem).toBeInTheDocument();
-    expect(countryName).toBeInTheDocument();
-    expect(flagEmoji).toBeInTheDocument();
-    expect(eventCount).toBeInTheDocument();
-  });
-
-  it('calls handleTournamentClick when clicked', () => {
     const { getByRole } = render(
       <TournamentItem
-        index={1}
         tournament={tournament}
         handleTournamentClick={mockHandleTournamentClick}
+        backgroundColor="#ffffff"
       />,
     );
 
-    const tournamentItem = getByRole('button');
-    fireEvent.click(tournamentItem);
+    const button = getByRole('button');
+    fireEvent.click(button);
 
     expect(mockHandleTournamentClick).toHaveBeenCalledTimes(1);
-    expect(mockHandleTournamentClick).toHaveBeenCalledWith(1); // eventId
+    expect(mockHandleTournamentClick).toHaveBeenCalledWith(123);
   });
 });

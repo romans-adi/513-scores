@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import './EventItem.scss';
 
 const EventItem = ({
   name, id, startAt, awayTeam, homeTeam, index,
 }) => (
-  <li key={name} className="event-item" style={{ backgroundColor: index % 2 === 0 ? 'rgba(65, 103, 174, 1)' : 'rgba(65, 103, 174, 0.5)' }}>
+  <li className="event-item" style={{ backgroundColor: index % 2 === 0 ? 'rgb(65, 103, 174)' : 'rgba(65, 103, 174, 0.5)' }}>
     <span>{startAt}</span>
-    <Link to={`/events/${id}`}>{name}</Link>
+    <a href={`/events/${id}`}>{name}</a>
     <div className="logos">
-      <img src={homeTeam.logo} alt="Home Team Logo" />
-      {' '}
+      <img alt="Home Team Logo" src={homeTeam.logo} />
       <div className="vs">VS</div>
-      {' '}
-      <img src={awayTeam.logo} alt="Away Team Logo" />
+      <img alt="Away Team Logo" src={awayTeam.logo} />
     </div>
   </li>
 );

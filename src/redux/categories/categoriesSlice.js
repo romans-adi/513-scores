@@ -1,16 +1,17 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {
   fetchCategories,
   fetchSectionsByCategory,
   fetchEventsBySection,
   fetchEventsByLeague,
+  fetchMetaBySport,
 } from './api';
 
 export const fetchCategoriesData = createAsyncThunk(
   'categories/fetchCategoriesData',
   async () => {
-    const categories = await fetchCategories();
-    return categories;
+    const response = await fetchCategories();
+    return response;
   },
 );
 
@@ -39,8 +40,35 @@ export const fetchEventsBySectionData = createAsyncThunk(
 export const fetchEventsByLeagueData = createAsyncThunk(
   'categories/fetchEventsByLeagueData',
   async (leagueId) => {
-    const events = await fetchEventsByLeague(leagueId);
-    return events;
+    try {
+      const events = await fetchEventsByLeague(leagueId);
+      return events;
+    } catch (error) {
+      console.error('Error fetching events:', error);
+      throw error;
+    }
+  },
+);
+
+export const fetchTotalEventsData = createAsyncThunk(
+  'categories/fetchTotalEventsData',
+  async (_, { getState }) => {
+    const { categories } = getState().categories;
+
+    const totalEventsBySport = {};
+
+    await Promise.all(
+      categories.map(async (category) => {
+        try {
+          const meta = await fetchMetaBySport(category.id);
+          totalEventsBySport[category.id] = meta.total;
+        } catch (error) {
+          console.error(`Failed to fetch meta for category ${category.id}`, error);
+        }
+      }),
+    );
+
+    return totalEventsBySport;
   },
 );
 
@@ -54,6 +82,7 @@ const categoriesSlice = createSlice({
     isLoading: false,
     error: null,
     selectedLeague: null,
+    totalEventsBySport: {},
   },
   reducers: {
     setTournamentList: (state, action) => {
@@ -67,6 +96,9 @@ const categoriesSlice = createSlice({
     },
     setSelectedLeague: (state, action) => {
       state.selectedLeague = action.payload;
+    },
+    clearSelectedLeague: (state) => {
+      state.selectedLeague = null;
     },
   },
   extraReducers: (builder) => {
@@ -118,15 +150,29 @@ const categoriesSlice = createSlice({
       .addCase(fetchEventsByLeagueData.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+      .addCase(fetchTotalEventsData.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchTotalEventsData.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.totalEventsBySport = action.payload;
+      })
+      .addCase(fetchTotalEventsData.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
       });
   },
 });
 
 export const {
   setTournamentList,
+  setCategories,
   setSelectedLeagueId,
   setEventList,
   setSelectedLeague,
+  clearSelectedLeague,
 } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

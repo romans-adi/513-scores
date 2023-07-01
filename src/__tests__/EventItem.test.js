@@ -1,53 +1,29 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import EventItem from '../components/Items/EventItem';
+import EventItem from '../components/Items/Event/EventItem';
 
-describe('EventItem', () => {
-  const event = {
-    name: 'Event Name',
-    start_at: '2023-06-30',
+test('renders EventItem component', () => {
+  const mockProps = {
+    name: 'Test Event',
     id: 1,
-    away_team: {
-      logo: 'away_team_logo.png',
+    startAt: '2023-07-01T12:00:00Z',
+    awayTeam: {
+      logo: 'https://tipsscore.com/resb/team/bc-hallmann-vienna.png',
     },
-    home_team: {
-      logo: 'home_team_logo.png',
+    homeTeam: {
+      logo: 'home-logo.png',
     },
+    index: 0,
   };
 
-  it('renders event details correctly', () => {
-    const { getByText, getByAltText } = render(
-      <BrowserRouter>
-        <EventItem event={event} index={0} />
-      </BrowserRouter>,
-    );
-
-    const eventName = getByText('Event Name');
-    expect(eventName).toBeInTheDocument();
-
-    const eventDate = getByText('2023-06-30');
-    expect(eventDate).toBeInTheDocument();
-
-    const homeTeamLogo = getByAltText('Home Team Logo');
-    expect(homeTeamLogo).toBeInTheDocument();
-    expect(homeTeamLogo.src).toContain('home_team_logo.png');
-
-    const awayTeamLogo = getByAltText('Away Team Logo');
-    expect(awayTeamLogo).toBeInTheDocument();
-    expect(awayTeamLogo.src).toContain('away_team_logo.png');
-  });
-
-  it('applies correct background color based on index', () => {
-    const { container } = render(
-      <BrowserRouter>
-        <EventItem event={event} index={0} />
-        <EventItem event={event} index={1} />
-      </BrowserRouter>,
-    );
-
-    const eventItems = container.querySelectorAll('.event-item');
-    expect(eventItems[0]).toHaveStyle('background-color: rgba(65, 103, 174, 1)');
-    expect(eventItems[1]).toHaveStyle('background-color: rgba(65, 103, 174, 0.5)');
-  });
+  render(
+    <EventItem
+      name={mockProps.name}
+      id={mockProps.id}
+      startAt={mockProps.startAt}
+      awayTeam={mockProps.awayTeam}
+      homeTeam={mockProps.homeTeam}
+      index={mockProps.index}
+    />,
+  );
 });

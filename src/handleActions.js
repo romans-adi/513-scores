@@ -1,14 +1,10 @@
-/* eslint-disable max-len */
-import countriesAbbreviations from './countries';
+import countriesAbbreviations from './assets/countries';
 import {
-  fetchSectionsData, fetchEventsByLeagueData, fetchEventsBySectionData, setTournamentList, setSelectedLeagueId,
+  fetchSectionsData, fetchEventsByLeagueData,
+  fetchEventsBySectionData, setTournamentList, setSelectedLeague, setEventList,
 } from './redux/categories/categoriesSlice';
 
-export const handleCategoryClick = async (
-  categoryId,
-  dispatch,
-  navigate,
-) => {
+export const handleCategoryClick = async (categoryId, dispatch, navigate) => {
   try {
     const response = await dispatch(fetchSectionsData(categoryId));
     const sections = response.payload;
@@ -20,7 +16,7 @@ export const handleCategoryClick = async (
         eventCount: 0,
       }));
       dispatch(setTournamentList(tournaments));
-      navigate('/tournament');
+      navigate('/tournaments');
     } else {
       console.log('Error fetching sections: Invalid sections data');
     }
@@ -36,12 +32,12 @@ export const handleTournamentClick = async (sportId, dispatch, navigate) => {
     if (events.length > 0) {
       const { league } = events[0];
       if (league && league.slug) {
-        dispatch(setSelectedLeagueId(league));
-        navigate(`/league/${league.name}`);
+        dispatch(setSelectedLeague(league));
+        navigate(`/${league.name}`);
       } else {
         console.error('Error fetching events: Invalid league object or missing slug');
-        const leagueId = league ? league.id : 'Unknown League';
-        navigate(`/league/${leagueId}`);
+        const leagueId = league ? league.id : 'No Active League';
+        navigate(`/${leagueId}`);
       }
     } else {
       console.error('Error fetching events: No events found');
@@ -51,12 +47,11 @@ export const handleTournamentClick = async (sportId, dispatch, navigate) => {
   }
 };
 
-export const handleLeagueClick = async (leagueId, dispatch, setEventList, setSelectedLeague) => {
+export const handleLeagueClick = async (leagueId, dispatch) => {
   try {
     const action = await dispatch(fetchEventsByLeagueData(leagueId));
-    const events = action.payload;
-    setEventList(events);
-    setSelectedLeague(events[0]?.league);
+    const events = action.payload || [];
+    dispatch(setEventList(events));
   } catch (error) {
     console.error('Error fetching events:', error);
   }

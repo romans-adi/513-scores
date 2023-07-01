@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { BiMicrophone } from 'react-icons/bi';
 import { BsFillGearFill } from 'react-icons/bs';
 import { IoIosArrowBack } from 'react-icons/io';
@@ -10,6 +11,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPage = location.pathname;
+  const tournaments = useSelector((state) => state.categories.tournaments);
 
   const goBack = () => {
     if (currentPage !== 'home' && currentPage !== '/') {
@@ -26,13 +28,20 @@ const Navbar = () => {
     return <div className="current">{formattedTitle}</div>;
   };
 
+  const renderTournamentsCount = () => {
+    if (currentPage === '/tournaments') {
+      return <div className="tournaments-count">{`(${tournaments.length})`}</div>;
+    }
+    return null;
+  };
+
   return (
     <nav>
       {currentPage === 'home' || currentPage === '/' ? (
-        <GiHamburgerMenu />
+        <GiHamburgerMenu data-testid="hamburger-menu" />
       ) : (
         <NavLink to="#" onClick={goBack}>
-          <IoIosArrowBack className="arrow" />
+          <IoIosArrowBack className="arrow" data-testid="back-button" />
         </NavLink>
       )}
       {currentPage === 'home' && (
@@ -41,9 +50,10 @@ const Navbar = () => {
         </div>
       )}
       {renderTitle()}
+      {renderTournamentsCount()}
       <div className="mic-settings">
-        <BiMicrophone />
-        <BsFillGearFill />
+        <BiMicrophone data-testid="mic-icon" />
+        <BsFillGearFill data-testid="gear-icon" />
       </div>
     </nav>
   );

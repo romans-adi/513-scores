@@ -6,7 +6,7 @@ import {
   fetchEventsByLeague,
 } from '../redux/categories/api';
 
-const API_KEY = 'ad83f4013emshe90db1c06834cd6p126db6jsn8e559041807b';
+const API_KEY = '5ab60f012emsh754dc2e9033832ap132597jsn7536973df8f1';
 const API_HOST = 'sportscore1.p.rapidapi.com';
 
 describe('API', () => {
@@ -19,8 +19,6 @@ describe('API', () => {
     mockAxios.request.mockResolvedValueOnce(mockResponse);
 
     const result = fetchCategories();
-
-    // Assertions
     expect(mockAxios.request).toHaveBeenCalledWith({
       method: 'GET',
       url: `https://${API_HOST}/sports`,
@@ -36,8 +34,6 @@ describe('API', () => {
     mockAxios.request.mockRejectedValueOnce(new Error('Failed to fetch categories'));
 
     const result = fetchCategories();
-
-    // Assertions
     expect(mockAxios.request).toHaveBeenCalledWith({
       method: 'GET',
       url: `https://${API_HOST}/sports`,
@@ -55,8 +51,6 @@ describe('API', () => {
     mockAxios.request.mockResolvedValueOnce(mockResponse);
 
     const result = fetchSectionsByCategory(categoryId);
-
-    // Assertions
     expect(mockAxios.request).toHaveBeenCalledWith({
       method: 'GET',
       url: `https://${API_HOST}/sports/${categoryId}/sections`,
@@ -74,8 +68,6 @@ describe('API', () => {
     mockAxios.request.mockRejectedValueOnce(new Error('Failed to fetch sections'));
 
     const result = fetchSectionsByCategory(categoryId);
-
-    // Assertions
     expect(mockAxios.request).toHaveBeenCalledWith({
       method: 'GET',
       url: `https://${API_HOST}/sports/${categoryId}/sections`,
@@ -94,8 +86,6 @@ describe('API', () => {
     mockAxios.request.mockResolvedValueOnce(mockResponse);
 
     const result = fetchEventsBySection(sectionId);
-
-    // Assertions
     expect(mockAxios.request).toHaveBeenCalledWith({
       method: 'GET',
       url: `https://${API_HOST}/sections/${sectionId}/events`,
@@ -113,8 +103,6 @@ describe('API', () => {
     mockAxios.request.mockRejectedValueOnce(new Error('Failed to fetch events'));
 
     const result = fetchEventsBySection(sectionId);
-
-    // Assertions
     expect(mockAxios.request).toHaveBeenCalledWith({
       method: 'GET',
       url: `https://${API_HOST}/sections/${sectionId}/events`,
@@ -133,8 +121,6 @@ describe('API', () => {
     mockAxios.request.mockResolvedValueOnce(mockResponse);
 
     const result = fetchEventsByLeague(leagueId);
-
-    // Assertions
     expect(mockAxios.request).toHaveBeenCalledWith({
       method: 'GET',
       url: `https://${API_HOST}/leagues/${leagueId}/events`,
@@ -152,8 +138,6 @@ describe('API', () => {
     mockAxios.request.mockRejectedValueOnce(new Error('Failed to fetch events'));
 
     const result = fetchEventsByLeague(leagueId);
-
-    // Assertions
     expect(mockAxios.request).toHaveBeenCalledWith({
       method: 'GET',
       url: `https://${API_HOST}/leagues/${leagueId}/events`,

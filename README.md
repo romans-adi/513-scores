@@ -32,9 +32,9 @@ The live sports scores app provides real-time updates and schedules for various 
 ### Key Features <a name="key-features"></a>
 
  - [x] Live Scores: Get real-time updates on live scores for various sports events.
- - [x] Detailed Match Information: View detailed match information, including team names, player stats, and relevant statistics.
+ - [x] Detailed Match Information: View detailed match information, including event time and result.
  - [x] User-Friendly Interface: Enjoy a user-friendly interface that makes it easy to navigate and find the information you need.
- - [x] Responsive design for seamless usage on different devices.
+ - [x] Responsive design for seamless usage on different devices (tablet/mobile).
 
 ### Future Features <a name="future-features"></a>
 
@@ -175,7 +175,7 @@ Furthermore, if you would like to get in touch with us, you can find our contact
 
 We would like to thank the following individuals and projects for their contributions and inspiration:
 
-[APIDojo](https://apidojo.net/) :  For generously providing the live scores and results that power my sports application. Their reliable API enables me to deliver real-time sports information, enhancing the user experience and ensuring up-to-date data for my users.
+[Tipsscore.com](https://tipsscore.com/) :  For generously providing the live scores and results that power my sports application. Their reliable API enables me to deliver real-time sports information, enhancing the user experience and ensuring up-to-date data for my users.
 [Nelson Sakwa](http://sakwadesign.com/): For sharing their incredible design expertise and providing a free template on Behance that served as the foundation for the visual design of my application. The template created by Nelson Sakwa has significantly influenced the aesthetics and user interface of my platform, allowing me to deliver a visually appealing and user-friendly experience.
 
 <!-- AUTHORS -->

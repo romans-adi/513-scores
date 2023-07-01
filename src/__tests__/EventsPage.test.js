@@ -1,54 +1,57 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { useSelector } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import EventsPage from '../views/EventsPage';
-import EventItem from '../components/Items/EventItem';
 
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
 }));
 
-jest.mock('../components/Items/EventItem', () => ({
-  __esModule: true,
-  default: jest.fn(() => null),
-}));
-
 describe('EventsPage', () => {
-  beforeEach(() => {
+  afterEach(() => {
     useSelector.mockClear();
-    EventItem.mockClear();
   });
 
-  test('renders event items correctly', () => {
-    const mockEventList = [
-      { id: 1, name: 'Event 1' },
-      { id: 2, name: 'Event 2' },
+  test('renders the event list', async () => {
+    const events = [
+      {
+        id: 1,
+        name: 'Event 1',
+        start_at: '2023-07-01',
+        away_team: { logo: 'Away Team A Logo' },
+        home_team: { logo: 'Home Team B Logo' },
+      },
+      {
+        id: 2,
+        name: 'Event 2',
+        start_at: '2023-07-02',
+        away_team: { logo: 'Away Team C Logo' },
+        home_team: { logo: 'Home Team D Logo' },
+      },
     ];
+    useSelector.mockReturnValue(events);
 
-    useSelector.mockReturnValueOnce(mockEventList);
+    render(
+      <BrowserRouter>
+        <EventsPage />
+      </BrowserRouter>,
+    );
 
-    render(<EventsPage />);
+    const eventItems = screen.getAllByRole('listitem');
+    expect(eventItems).toHaveLength(events.length);
 
-    expect(EventItem).toHaveBeenCalledTimes(mockEventList.length);
-
-    mockEventList.forEach((event, index) => {
-      expect(EventItem).toHaveBeenNthCalledWith(index + 1, {
-        name: event.name,
-        id: event.id,
-        key: event.id.toString(),
-        event,
-        index, // Update this line
+    await waitFor(() => {
+      eventItems.forEach((eventItem, index) => {
+        const event = events[index];
+        const linkElement = eventItem.querySelector('a');
+        expect(linkElement).toBeInTheDocument();
+        expect(linkElement).toHaveAttribute('href', `/events/${event.id}`);
+        expect(linkElement).toHaveTextContent(event.name);
+        expect(eventItem).toHaveTextContent(event.start_at);
+        expect(eventItem.querySelector('img[alt="Away Team Logo"]')).toBeInTheDocument();
+        expect(eventItem.querySelector('img[alt="Home Team Logo"]')).toHaveAttribute('src', event.home_team.logo);
       });
     });
-  });
-
-  test('renders no event items when event list is empty', () => {
-    const mockEventList = [];
-
-    useSelector.mockReturnValueOnce(mockEventList);
-
-    render(<EventsPage />);
-
-    expect(EventItem).not.toHaveBeenCalled();
   });
 });
