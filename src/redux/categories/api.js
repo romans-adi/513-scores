@@ -1,9 +1,9 @@
 import axios from 'axios';
 import axiosRateLimit from 'axios-rate-limit';
 
-const rateLimitedAxios = axiosRateLimit(axios.create(), { maxRequests: 1, perMilliseconds: 99000 });
+const rateLimitedAxios = axiosRateLimit(axios.create(), { maxRequests: 1, perMilliseconds: 6000 });
 
-const API_KEY = '5ab60f012emsh754dc2e9033832ap132597jsn7536973df8f1';
+const API_KEY = '220b7ab1afmsh133b9b9c2418ba6p1f9de3jsnd8fd181bf446';
 const API_HOST = 'sportscore1.p.rapidapi.com';
 
 export const fetchCategories = async () => {
@@ -118,7 +118,7 @@ export const fetchMetaByTournament = async (categoryId) => {
     const response = await rateLimitedAxios.request(options);
     const { meta } = response.data;
     const totalEvents = meta;
-
+    console.log(response.data);
     return totalEvents;
   } catch (error) {
     throw new Error('Failed to fetch categories');

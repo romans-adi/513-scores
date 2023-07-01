@@ -1,4 +1,4 @@
-.tournaments-container{
+.tournaments-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -12,9 +12,7 @@
     padding: 10px;
     font-size: 1rem;
     text-align: center;
-    align-items: center;
     position: relative;
-    flex: 1;
     aspect-ratio: 1/1;
     flex: 1 1 50%;
 
@@ -23,12 +21,12 @@
       flex: 1;
     }
 
-.country-name {
-  font-size: 1rem;
-  width: 50%;
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-}
-}
+    .country-name {
+      font-size: 1rem;
+      width: 50%;
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+    }
+  }
 }

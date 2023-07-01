@@ -1,39 +1,84 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createMemoryHistory } from 'history';
+import { BrowserRouter, useLocation, useHistory } from 'react-router-dom';
+import configureStore from 'redux-mock-store';
 import Navbar from '../components/Navbar/Navbar';
-import store from '../redux/store';
+import '@testing-library/jest-dom/extend-expect';
 
-test('Navbar renders correctly', () => {
-  const { getByText, getByTestId } = render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <Navbar />
-      </BrowserRouter>
-    </Provider>,
-  );
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useLocation: jest.fn(),
+  useHistory: jest.fn(),
+}));
 
-  const allEvents = getByText('All Events');
-  const hamburgerMenu = getByTestId('hamburger-menu');
-  //
-});
+describe('Navbar component', () => {
+  const mockStore = configureStore([]);
+  const initialState = {
+    categories: {
+      tournaments: [
+        { name: 'Tournament 1' },
+        { name: 'Tournament 2' },
+        { name: 'Tournament 3' },
+      ],
+    },
+  };
 
-test('Navbar navigates back when goBack is called', () => {
-  const history = createMemoryHistory();
-  history.push('/some-page');
+  test('should display the actual page name', () => {
+    const store = mockStore(initialState);
+    useLocation.mockReturnValue({ pathname: '/' });
 
-  const { getByTestId } = render(
-    <Provider store={store}>
-      <BrowserRouter history={history}>
-        <Navbar />
-      </BrowserRouter>
-    </Provider>,
-  );
+    const { getByTestId } = render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Navbar />
+        </BrowserRouter>
+      </Provider>,
+    );
 
-  const backButton = getByTestId('back-button');
-  fireEvent.click(backButton);
+    const pageTitle = getByTestId('current-page');
+    expect(pageTitle.textContent).toBe('All Events');
+  });
 
-  expect(history.location.pathname).toBe('/');
+  test('should render correctly when on the main page', () => {
+    const store = mockStore(initialState);
+    useLocation.mockReturnValue({ pathname: 'home' });
+
+    const { getByTestId } = render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Navbar />
+        </BrowserRouter>
+      </Provider>,
+    );
+
+    const hamburgerMenu = getByTestId('hamburger-menu');
+    expect(hamburgerMenu).toBeInTheDocument();
+  });
+
+  test('should render the back button when not on the home page', () => {
+    const store = mockStore(initialState);
+    const history = {
+      location: {
+        pathname: '/example',
+      },
+      goBack: jest.fn(),
+    };
+    useLocation.mockReturnValue({ pathname: history.location.pathname });
+    useHistory.mockReturnValue(history);
+
+    const { getByTestId } = render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Navbar />
+        </BrowserRouter>
+      </Provider>,
+    );
+
+    const backButton = getByTestId('back-button');
+    expect(backButton).toBeInTheDocument();
+
+    fireEvent.click(backButton);
+    expect(history.goBack).toHaveBeenCalledTimes(1);
+  });
 });

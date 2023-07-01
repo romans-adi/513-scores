@@ -1,3 +1,4 @@
+/* stylelint-disable at-rule-no-unknown */
 @use '../../assets//variables' as vars;
 
 nav {
@@ -10,6 +11,10 @@ nav {
   z-index: 2;
   align-items: baseline;
 
+  button {
+    all: unset;
+  }
+
   .current {
     min-width: 110px;
   }
@@ -21,8 +26,6 @@ nav {
 }
 
 .tournaments-count {
-  position: absolute;
-    right: 133px;
-    top: 53px;
-    font-size: 1.125rem;
+  margin-left: -5rem;
+  font-size: 1.125rem;
 }

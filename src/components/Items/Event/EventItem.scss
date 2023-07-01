@@ -1,4 +1,3 @@
-
 .events-container {
   width: 100%;
 
@@ -19,29 +18,30 @@
       width: 30px;
       height: 1px;
       background-color: white;
-  }
+    }
   }
 
-.event-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 0;
-  font-size: 1rem;
-
-  .logos {
+  .event-item {
     display: flex;
-    width: 100%;
-    justify-content: space-around;
-  img {
-    width: 50px;
-  }
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0;
+    font-size: 1rem;
 
-  .vs {
-    font-family: 'Lato',sans-serif;
-    font-size: 3rem;
+    .logos {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+
+      img {
+        width: 50px;
+      }
+
+      .vs {
+        font-family: 'Lato', sans-serif;
+        font-size: 3rem;
+      }
+    }
   }
-}
-}
 }
