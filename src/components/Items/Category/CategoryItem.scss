@@ -4,10 +4,7 @@ display: flex;
 flex-wrap: wrap;
 justify-content: center;
 align-items: flex-start;
-
-> *:not(style) {
-  flex: 1 1 50%;
-}
+width: 100%;
 
 button {
   all: unset;
@@ -15,15 +12,15 @@ button {
 
 .category-item {
   display: flex;
+  padding: 10px;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 10px;
   font-size: 1rem;
   text-align: center;
   align-items: center;
   position: relative;
-  flex: 1;
+  flex: 1 1 50%;
   aspect-ratio: 1/1;
 
   > *:not(style) {
@@ -53,7 +50,6 @@ button {
 
   .category-logo {
     font-size: 4.4rem;
-    align-self: center;
   }
 
   .category-name {

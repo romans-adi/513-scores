@@ -4,7 +4,7 @@ import { BiMicrophone } from 'react-icons/bi';
 import { BsFillGearFill } from 'react-icons/bs';
 import { IoIosArrowBack } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.scss';
 
 const Navbar = () => {
@@ -12,16 +12,15 @@ const Navbar = () => {
   const location = useLocation();
   const currentPage = location.pathname;
   const tournaments = useSelector((state) => state.categories.tournaments);
-
   const goBack = () => {
     if (currentPage !== 'home' && currentPage !== '/') {
-      navigate(-1, { replace: true });
+      navigate(-1);
     }
   };
 
   const renderTitle = () => {
     if (!currentPage || currentPage === '/') {
-      return <div className="current">All Events</div>;
+      return <div data-testid="current-page" className="current">All Events</div>;
     }
     const decodedTitle = decodeURIComponent(location.pathname.slice(1));
     const formattedTitle = decodedTitle.charAt(0).toUpperCase() + decodedTitle.slice(1);
@@ -40,9 +39,9 @@ const Navbar = () => {
       {currentPage === 'home' || currentPage === '/' ? (
         <GiHamburgerMenu data-testid="hamburger-menu" />
       ) : (
-        <NavLink to="#" onClick={goBack}>
+        <button type="button" onClick={goBack}>
           <IoIosArrowBack className="arrow" data-testid="back-button" />
-        </NavLink>
+        </button>
       )}
       {currentPage === 'home' && (
         <div className="gi-container">
