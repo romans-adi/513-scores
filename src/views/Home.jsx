@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import LoadingIndicator from '../components/Indicators/LoadingIndicator';
 import ErrorIndicator from '../components/Indicators/ErrorIndicator';
 import {
@@ -20,7 +19,6 @@ const Home = () => {
     error,
     totalEventsBySport,
   } = useSelector((state) => state.categories);
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchCategoriesData());
@@ -29,7 +27,7 @@ const Home = () => {
   useEffect(() => {
     const fetchTotalEvents = async () => {
       if (categories && categories.length > 0) {
-        await dispatch(fetchTotalEventsData()).unwrap();
+        await dispatch(fetchTotalEventsData());
       }
     };
 
@@ -49,16 +47,17 @@ const Home = () => {
   }
 
   const sortedCategories = categories.slice().sort((a, b) => a.name.localeCompare(b.name));
-  console.log(totalEventsBySport);
+
   return (
     <div className="categories-container">
       {sortedCategories.map((category, index) => {
         const totalEvents = totalEventsBySport && totalEventsBySport[category.id];
         return (
           <CategoryItem
+            data-testid="categoryEl"
             key={category.id}
             category={category}
-            handleCategoryClick={() => handleCategoryClick(category.id, dispatch, navigate)}
+            handleCategoryClick={() => handleCategoryClick(category.id, dispatch)}
             backgroundColor={getLeagueItemBackgroundColor(index)}
             totalEvents={totalEvents}
           />

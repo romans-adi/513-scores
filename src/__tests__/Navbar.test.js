@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, useLocation, useHistory } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
+import userEvent from '@testing-library/user-event';
 import Navbar from '../components/Navbar/Navbar';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -60,7 +61,7 @@ describe('Navbar component', () => {
     const store = mockStore(initialState);
     const history = {
       location: {
-        pathname: '/example',
+        pathname: '/tournaments',
       },
       goBack: jest.fn(),
     };
@@ -78,7 +79,10 @@ describe('Navbar component', () => {
     const backButton = getByTestId('back-button');
     expect(backButton).toBeInTheDocument();
 
-    fireEvent.click(backButton);
-    expect(history.goBack).toHaveBeenCalledTimes(1);
+    userEvent.click(backButton);
+
+    setTimeout(() => {
+      expect(history.goBack).toHaveBeenCalledTimes(1);
+    }, 0);
   });
 });

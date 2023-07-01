@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { useSelector } from 'react-redux';
-
 import '@testing-library/jest-dom/extend-expect';
 import LeaguePage from '../views/LeaguePage';
 

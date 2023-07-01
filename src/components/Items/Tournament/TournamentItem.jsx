@@ -48,7 +48,7 @@ TournamentItem.propTypes = {
     name: PropTypes.string.isRequired,
     countryCode: PropTypes.string,
     eventId: PropTypes.number.isRequired,
-    eventCount: PropTypes.number.isRequired,
+    eventCount: PropTypes.number,
   }).isRequired,
   handleTournamentClick: PropTypes.func.isRequired,
   backgroundColor: PropTypes.string.isRequired,

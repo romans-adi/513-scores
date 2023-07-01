@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import TournamentPage from '../views/TournamentPage';
 import { handleTournamentClick } from '../handleActions';
+import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),

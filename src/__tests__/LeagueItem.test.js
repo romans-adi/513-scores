@@ -18,7 +18,7 @@ describe('LeagueItem', () => {
         id={null}
       />,
     );
-    const leagueName = getByTestId('league-name').textContent; // Access the text content
+    const leagueName = getByTestId('league-name').textContent;
 
     expect(leagueName).toBe('League Name');
   });
@@ -37,7 +37,7 @@ describe('LeagueItem', () => {
         id={null}
       />,
     );
-    const leagueLogo = getByTestId('league-logo'); // Use getByTestId to target the league logo element
+    const leagueLogo = getByTestId('league-logo');
 
     expect(leagueLogo).toBeInTheDocument();
     expect(leagueLogo.getAttribute('src')).toContain('league_logo.png');

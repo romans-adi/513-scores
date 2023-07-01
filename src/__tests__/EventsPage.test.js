@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import EventsPage from '../views/EventsPage';
+import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
