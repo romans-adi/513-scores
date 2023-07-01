@@ -14,6 +14,8 @@ The live sports scores app provides real-time updates and schedules for various 
 - [Features ](#features-)
   - [Key Features](#key-features)
   - [Future Features](#future-features)
+- [Live Demo](#⚽-live-demo)
+- [Video Presentation](#🎥-video-presentation)
 - [Getting Started ](#-getting-started-)
   - [Installation](#installation)
   - [Setup](#setup)
@@ -65,6 +67,12 @@ The live sports scores app provides real-time updates and schedules for various 
 - [Here is a Live Demo of this project](https://five13-scores.onrender.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- VIDEO PRESENTATION -->
+
+## 🎥 Video Presentation <a name="video-presentation"></a>
+
+-[Here is a Video Presentation of this project](https://www.loom.com/share/c2f9baab0bf543fda27a0f9e03f27dcf?sid=1973c695-1d4d-4c50-97c7-1b4518bee34e)
 
 <!-- GETTING STARTED -->
 
