@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Ripples from 'react-ripples';
 import { PropTypes } from 'prop-types';
-import '../../views/Home.scss';
 import './TournamentItem.scss';
-import getLeagueItemBackgroundColor from '../../colorUtils';
 
-const TournamentItem = ({ tournament, handleTournamentClick, index }) => {
+const TournamentItem = ({ tournament, handleTournamentClick, backgroundColor }) => {
   const { name, countryCode } = tournament;
   const [eventCount, setEventCount] = useState(0);
 
@@ -19,28 +17,26 @@ const TournamentItem = ({ tournament, handleTournamentClick, index }) => {
   }, [tournament]);
 
   return (
-    <div style={{ backgroundColor: getLeagueItemBackgroundColor(index) }}>
+    <div className="tournament-item" style={{ backgroundColor }}>
       <Ripples>
         <button
-          className="tournament-item"
+          className="tournament-button"
           type="button"
           onClick={() => handleTournamentClick(tournament.eventId)}
         >
-          <div>
-            {countryCode && (
-              <span role="img" aria-label={`${name} Flag`} style={{ fontSize: '2rem' }}>
-                {getFlagEmoji(countryCode)}
-              </span>
-            )}
-            <span className="country-name">{name}</span>
-            {eventCount > 0 && (
-              <span className="event-count">
-                (
-                {eventCount}
-                )
-              </span>
-            )}
-          </div>
+          {countryCode && (
+          <span role="img" aria-label={`${name} Flag`} style={{ fontSize: '5rem' }}>
+            {getFlagEmoji(countryCode)}
+          </span>
+          )}
+          <span className="country-name">{name}</span>
+          {eventCount > 0 && (
+          <span className="event-count">
+            (
+            {eventCount}
+            )
+          </span>
+          )}
         </button>
       </Ripples>
     </div>
@@ -48,7 +44,6 @@ const TournamentItem = ({ tournament, handleTournamentClick, index }) => {
 };
 
 TournamentItem.propTypes = {
-  index: PropTypes.number.isRequired,
   tournament: PropTypes.shape({
     name: PropTypes.string.isRequired,
     countryCode: PropTypes.string,
@@ -56,6 +51,7 @@ TournamentItem.propTypes = {
     eventCount: PropTypes.number.isRequired,
   }).isRequired,
   handleTournamentClick: PropTypes.func.isRequired,
+  backgroundColor: PropTypes.string.isRequired,
 };
 
 export default TournamentItem;

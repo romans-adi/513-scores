@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import TournamentItem from '../components/Items/TournamentItem';
+import TournamentItem from '../components/Items/Tournament/TournamentItem';
 import { handleTournamentClick } from '../handleActions';
+import getLeagueItemBackgroundColor from '../assets/colorUtils';
 
 const TournamentPage = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const TournamentPage = () => {
   }, [dispatch, tournaments]);
 
   if (!tournaments || tournaments.length === 0) {
-    return <div>No tournaments available.</div>;
+    return <div className="error-text">No tournaments available.</div>;
   }
 
   const handleItemClick = (eventId) => {
@@ -27,16 +28,14 @@ const TournamentPage = () => {
 
   return (
     <div className="tournaments-container">
-      <div className="tournament-list">
-        {sortedTournaments.map((tournament, index) => (
-          <TournamentItem
-            key={tournament.eventId}
-            tournament={tournament}
-            handleTournamentClick={() => handleItemClick(tournament.eventId)}
-            index={index}
-          />
-        ))}
-      </div>
+      {sortedTournaments.map((tournament, index) => (
+        <TournamentItem
+          key={tournament.eventId}
+          tournament={tournament}
+          handleTournamentClick={() => handleItemClick(tournament.eventId)}
+          backgroundColor={getLeagueItemBackgroundColor(index)}
+        />
+      ))}
     </div>
   );
 };

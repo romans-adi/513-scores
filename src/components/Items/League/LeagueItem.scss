@@ -1,0 +1,40 @@
+@use '../../../assets/variables' as vars;
+
+.league-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+
+  > *:not(style) {
+    flex: 1 1 50%;
+  }
+
+  button {
+    all: unset;
+  }
+
+  .league-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    aspect-ratio: 1/1;
+
+    &:hover {
+      background-color: vars.$dark-main-color;
+      cursor: pointer;
+    }
+
+    .league-logo {
+      width: 100%;
+    }
+  }
+}

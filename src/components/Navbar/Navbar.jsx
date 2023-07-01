@@ -1,6 +1,5 @@
-/* eslint-disable no-constant-condition */
-/* eslint-disable no-unused-vars */
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { BiMicrophone } from 'react-icons/bi';
 import { BsFillGearFill } from 'react-icons/bs';
 import { IoIosArrowBack } from 'react-icons/io';
@@ -12,9 +11,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPage = location.pathname;
+  const tournaments = useSelector((state) => state.categories.tournaments);
 
   const goBack = () => {
-    if (currentPage !== 'home' || currentPage !== '/') {
+    if (currentPage !== 'home' && currentPage !== '/') {
       navigate(-1, { replace: true });
     }
   };
@@ -23,17 +23,25 @@ const Navbar = () => {
     if (!currentPage || currentPage === '/') {
       return <div className="current">All Events</div>;
     }
-    const formattedTitle = currentPage.slice(1).charAt(0).toUpperCase() + currentPage.slice(2);
+    const decodedTitle = decodeURIComponent(location.pathname.slice(1));
+    const formattedTitle = decodedTitle.charAt(0).toUpperCase() + decodedTitle.slice(1);
     return <div className="current">{formattedTitle}</div>;
+  };
+
+  const renderTournamentsCount = () => {
+    if (currentPage === '/tournaments') {
+      return <div className="tournaments-count">{`(${tournaments.length})`}</div>;
+    }
+    return null;
   };
 
   return (
     <nav>
       {currentPage === 'home' || currentPage === '/' ? (
-        <GiHamburgerMenu />
+        <GiHamburgerMenu data-testid="hamburger-menu" />
       ) : (
         <NavLink to="#" onClick={goBack}>
-          <IoIosArrowBack className="arrow" />
+          <IoIosArrowBack className="arrow" data-testid="back-button" />
         </NavLink>
       )}
       {currentPage === 'home' && (
@@ -42,9 +50,10 @@ const Navbar = () => {
         </div>
       )}
       {renderTitle()}
+      {renderTournamentsCount()}
       <div className="mic-settings">
-        <BiMicrophone />
-        <BsFillGearFill />
+        <BiMicrophone data-testid="mic-icon" />
+        <BsFillGearFill data-testid="gear-icon" />
       </div>
     </nav>
   );

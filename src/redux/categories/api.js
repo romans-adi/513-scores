@@ -1,6 +1,9 @@
 import axios from 'axios';
+import axiosRateLimit from 'axios-rate-limit';
 
-const API_KEY = 'ad83f4013emshe90db1c06834cd6p126db6jsn8e559041807b';
+const rateLimitedAxios = axiosRateLimit(axios.create(), { maxRequests: 1, perMilliseconds: 99000 });
+
+const API_KEY = '5ab60f012emsh754dc2e9033832ap132597jsn7536973df8f1';
 const API_HOST = 'sportscore1.p.rapidapi.com';
 
 export const fetchCategories = async () => {
@@ -75,5 +78,49 @@ export const fetchEventsByLeague = async (leagueId) => {
     return response.data.data;
   } catch (error) {
     throw new Error('Failed to fetch events');
+  }
+};
+
+export const fetchMetaBySport = async (categoryId) => {
+  try {
+    const options = {
+      method: 'GET',
+      url: `https://${API_HOST}/sports/${categoryId}/leagues`,
+      params: { page: '1' },
+      headers: {
+        'X-RapidAPI-Key': API_KEY,
+        'X-RapidAPI-Host': API_HOST,
+      },
+    };
+
+    const response = await rateLimitedAxios.request(options);
+    const { meta } = response.data;
+    const totalEvents = meta;
+
+    return totalEvents;
+  } catch (error) {
+    throw new Error('Failed to fetch categories');
+  }
+};
+
+export const fetchMetaByTournament = async (categoryId) => {
+  try {
+    const options = {
+      method: 'GET',
+      url: `https://${API_HOST}/sports/${categoryId}/leagues`,
+      params: { page: '1' },
+      headers: {
+        'X-RapidAPI-Key': API_KEY,
+        'X-RapidAPI-Host': API_HOST,
+      },
+    };
+
+    const response = await rateLimitedAxios.request(options);
+    const { meta } = response.data;
+    const totalEvents = meta;
+
+    return totalEvents;
+  } catch (error) {
+    throw new Error('Failed to fetch categories');
   }
 };
