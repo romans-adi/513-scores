@@ -100,6 +100,9 @@ const categoriesSlice = createSlice({
     clearSelectedLeague: (state) => {
       state.selectedLeague = null;
     },
+    setCategories: (state, action) => {
+      state.categories = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
