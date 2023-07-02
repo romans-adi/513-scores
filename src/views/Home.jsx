@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import LoadingIndicator from '../components/Indicators/LoadingIndicator';
 import ErrorIndicator from '../components/Indicators/ErrorIndicator';
 import {
@@ -11,6 +12,7 @@ import getLeagueItemBackgroundColor from '../assets/colorUtils';
 import { handleCategoryClick } from '../handleActions';
 
 const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     categories,
@@ -57,7 +59,7 @@ const Home = () => {
             data-testid="categoryEl"
             key={category.id}
             category={category}
-            handleCategoryClick={() => handleCategoryClick(category.id, dispatch)}
+            handleCategoryClick={() => handleCategoryClick(category.id, dispatch, navigate)}
             backgroundColor={getLeagueItemBackgroundColor(index)}
             totalEvents={totalEvents}
           />
