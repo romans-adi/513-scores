@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import TournamentItem from '../components/Items/Tournament/TournamentItem';
 import { handleTournamentClick } from '../handleActions';
-import getLeagueItemBackgroundColor from '../assets/colorUtils';
 
 const TournamentPage = () => {
   const dispatch = useDispatch();
@@ -28,12 +27,11 @@ const TournamentPage = () => {
 
   return (
     <div className="tournaments-container">
-      {sortedTournaments.map((tournament, index) => (
+      {sortedTournaments.map((tournament) => (
         <TournamentItem
           key={tournament.eventId}
           tournament={tournament}
           handleTournamentClick={() => handleItemClick(tournament.eventId)}
-          backgroundColor={getLeagueItemBackgroundColor(index)}
         />
       ))}
     </div>
