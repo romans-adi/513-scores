@@ -16,12 +16,17 @@ body {
   font-size: 2rem;
   font-weight: 800;
   min-height: 100%;
+  background: linear-gradient(to top, #0f0c29, #302b63, #24243e);
 }
 
 .wrapper {
   min-height: 100%;
+  max-width: 768px;
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
+  background-color: vars.$main-color;
+  min-height: 100vh;
 }
 
 a {
