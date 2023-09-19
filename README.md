@@ -4,7 +4,7 @@
 
 # <a name="about-project">⚽ 513 Scores </a>
 
-The live sports scores app provides real-time updates and schedules for various sports. It's user-friendly and customizable, with historical data for analysis.
+The live sports scores mobile app provides real-time updates and schedules for various sports. It's user-friendly and customizable, with historical data for analysis.
 
 <!-- TABLE OF CONTENTS -->
 
@@ -15,7 +15,6 @@ The live sports scores app provides real-time updates and schedules for various 
   - [Key Features](#key-features)
   - [Future Features](#future-features)
 - [Live Demo](#⚽-live-demo)
-- [Video Presentation](#🎥-video-presentation)
 - [Getting Started ](#-getting-started-)
   - [Installation](#installation)
   - [Setup](#setup)
@@ -36,10 +35,10 @@ The live sports scores app provides real-time updates and schedules for various 
  - [x] Live Scores: Get real-time updates on live scores for various sports events.
  - [x] Detailed Match Information: View detailed match information, including event time and result.
  - [x] User-Friendly Interface: Enjoy a user-friendly interface that makes it easy to navigate and find the information you need.
- - [x] Responsive design for seamless usage on different devices (tablet/mobile).
 
 ### Future Features <a name="future-features"></a>
 
+- [ ] Improved styles
 - [ ] Push Notifications: Set up push notifications to receive instant updates for selected matches and important events.
 - [ ] Personalized Updates: Customize your preferences to receive personalized updates for your favorite teams, sports, or competitions.
 - [ ] Historical Data: Explore historical match results, tournament standings, and player performance statistics for in-depth analysis.
@@ -68,12 +67,6 @@ The live sports scores app provides real-time updates and schedules for various 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- VIDEO PRESENTATION -->
-
-## 🎥 Video Presentation <a name="video-presentation"></a>
-
--[Here is a Video Presentation of this project](https://www.loom.com/share/c2f9baab0bf543fda27a0f9e03f27dcf?sid=1973c695-1d4d-4c50-97c7-1b4518bee34e)
-
 <!-- GETTING STARTED -->
 
 ## Getting Started <a name="getting-started"></a>
@@ -83,21 +76,29 @@ The live sports scores app provides real-time updates and schedules for various 
 To get a local copy up and running, follow these steps.
 Choose the directory on your local machine where you want to copy project. For example:
 
-> cd /home/user/name-of-your-directory
+```
+cd /home/user/name-of-your-directory
+```
 
 Clone the project using one of the options.
 
 Using SSH-key:
 
-> git clone git@github.com:romans-adi/513-scores.git
+```
+git clone git@github.com:romans-adi/513-scores.git
+```
 
 Using HTTPS:
 
-> git clone https://github.com/romans-adi/513-scores.git
+```
+git clone https://github.com/romans-adi/513-scores.git
+```
 
 You can also create the new directory just adding the name of it in the end of command. For example:
 
-> git clone https://github.com/romans-adi/513-scores.git 513-scores
+```
+git clone https://github.com/romans-adi/513-scores.git 513-scores
+```
 
 ### Installation <a name="installation"></a>
 
@@ -109,12 +110,19 @@ To run this project locally, follow these steps:
 
 2. Install dependencies:
 
-> cd 513-scores
-> npm install
+```
+cd 513-scores
+```
+
+```
+npm install
+```
 
 3. Start the development server:
 
-> npm start
+```
+npm start
+```
 
 4. Open your browser and navigate to http://localhost:3000 to access the 513 Scores.
 
@@ -136,7 +144,9 @@ To run this project locally, follow these steps:
 
 To run tests, execute the following command:
 
-> npm test
+```
+npm test
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -184,7 +194,6 @@ Furthermore, if you would like to get in touch with us, you can find our contact
 We would like to thank the following individuals and projects for their contributions and inspiration:
 
 [Tipsscore.com](https://tipsscore.com/) :  For generously providing the live scores and results that power my sports application. Their reliable API enables me to deliver real-time sports information, enhancing the user experience and ensuring up-to-date data for my users.
-[Nelson Sakwa](http://sakwadesign.com/): For sharing their incredible design expertise and providing a free template on Behance that served as the foundation for the visual design of my application. The template created by Nelson Sakwa has significantly influenced the aesthetics and user interface of my platform, allowing me to deliver a visually appealing and user-friendly experience.
 
 <!-- AUTHORS -->
 
@@ -193,7 +202,6 @@ We would like to thank the following individuals and projects for their contribu
 **Romans S.**
 
 - GitHub: [@romans-adi](https://github.com/romans-adi/)
-- Twitter: [@obj583](https://twitter.com/obj583/)
 - LinkedIn: [Romans Špiļaks](https://www.linkedin.com/in/obj513/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

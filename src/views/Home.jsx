@@ -8,7 +8,6 @@ import {
   fetchTotalEventsData,
 } from '../redux/categories/categoriesSlice';
 import CategoryItem from '../components/Items/Category/CategoryItem';
-import getLeagueItemBackgroundColor from '../assets/colorUtils';
 import { handleCategoryClick } from '../handleActions';
 
 const Home = () => {
@@ -52,7 +51,7 @@ const Home = () => {
 
   return (
     <div className="categories-container">
-      {sortedCategories.map((category, index) => {
+      {sortedCategories.map((category) => {
         const totalEvents = totalEventsBySport && totalEventsBySport[category.id];
         return (
           <CategoryItem
@@ -60,7 +59,6 @@ const Home = () => {
             key={category.id}
             category={category}
             handleCategoryClick={() => handleCategoryClick(category.id, dispatch, navigate)}
-            backgroundColor={getLeagueItemBackgroundColor(index)}
             totalEvents={totalEvents}
           />
         );

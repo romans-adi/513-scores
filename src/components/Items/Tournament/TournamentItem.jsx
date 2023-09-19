@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Ripples from 'react-ripples';
 import { PropTypes } from 'prop-types';
 import './TournamentItem.scss';
 
-const TournamentItem = ({ tournament, handleTournamentClick, backgroundColor }) => {
+const TournamentItem = ({ tournament, handleTournamentClick }) => {
   const { name, countryCode } = tournament;
   const [eventCount, setEventCount] = useState(0);
 
@@ -17,28 +16,26 @@ const TournamentItem = ({ tournament, handleTournamentClick, backgroundColor }) 
   }, [tournament]);
 
   return (
-    <div className="tournament-item" style={{ backgroundColor }}>
-      <Ripples>
-        <button
-          className="tournament-button"
-          type="button"
-          onClick={() => handleTournamentClick(tournament.eventId)}
-        >
-          {countryCode && (
-          <span role="img" aria-label={`${name} Flag`} style={{ fontSize: '5rem' }}>
+    <div className="tournament-item">
+      <button
+        className="tournament-button"
+        type="button"
+        onClick={() => handleTournamentClick(tournament.eventId)}
+      >
+        {countryCode && (
+          <span role="img" aria-label={`${name} Flag`} className="country-flag">
             {getFlagEmoji(countryCode)}
           </span>
-          )}
-          <span className="country-name">{name}</span>
-          {eventCount > 0 && (
+        )}
+        <span className="country-name">{name}</span>
+        {eventCount > 0 && (
           <span className="event-count">
             (
             {eventCount}
             )
           </span>
-          )}
-        </button>
-      </Ripples>
+        )}
+      </button>
     </div>
   );
 };
@@ -51,7 +48,6 @@ TournamentItem.propTypes = {
     eventCount: PropTypes.number,
   }).isRequired,
   handleTournamentClick: PropTypes.func.isRequired,
-  backgroundColor: PropTypes.string.isRequired,
 };
 
 export default TournamentItem;
