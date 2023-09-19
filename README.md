@@ -106,7 +106,9 @@ To run this project locally, follow these steps:
 
 1. Clone the repository:
 
-> git clone https://github.com/romans-adi/513-scores.git
+```
+git clone https://github.com/romans-adi/513-scores.git
+```
 
 2. Install dependencies:
 
